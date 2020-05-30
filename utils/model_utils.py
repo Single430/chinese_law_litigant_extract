@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-  * @author:zbl
+  * @author:
   * @file: model_utils.py
   * @time: 2020/05/29
   * @func:
@@ -15,6 +15,8 @@ import os
 import codecs
 
 import tensorflow as tf
+from tensorflow.python.training import training
+from tensorflow.python.framework import ops
 
 
 def get_last_checkpoint(model_path):
@@ -59,7 +61,16 @@ def adam_filter(model_path):
     saver.save(sess, os.path.join(model_path, "model.ckpt"))
 
 
-class InitHook(tf.train.SessionRunHook):
+def load_global_step_from_checkpoint_dir(checkpoint_dir):
+  try:
+    checkpoint_reader = training.NewCheckpointReader(
+        training.latest_checkpoint(checkpoint_dir))
+    return checkpoint_reader.get_tensor(ops.GraphKeys.GLOBAL_STEP)
+  except:  # pylint: disable=bare-except
+    return 0
+
+
+class InitHook(tf.estimator.SessionRunHook):
     """initializes model from a checkpoint_path
     FLAGS:
         modelPath: full path to checkpoint

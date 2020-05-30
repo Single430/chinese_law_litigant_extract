@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-  * @author:zbl
+  * @author:
   * @file: data_utils.py
   * @time: 2020/05/29
   * @func:
@@ -83,8 +83,8 @@ class NerProcessor(object):
                     else:
                         # Examples could have no label for mode = "test"
                         labels.append("O")
-                if words:
-                    examples.append(InputExample(guid="{}-{}".format(mode, guid_index), words=words, labels=labels))
+            if words:
+                examples.append(InputExample(guid="{}-{}".format(mode, guid_index), words=words, labels=labels))
         return examples
 
 
