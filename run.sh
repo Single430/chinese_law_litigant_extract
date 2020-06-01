@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PREBERT_PATH=/run/media/zbl/works/python/model-data/bert_hinese_L-12_H-768_A-12/tf1.0
+PREBERT_PATH=/path/bert_chinese_L-12_H-768_A-12/tf1.0
 
 python run_tf_ner.py -data_dir ./data \
 -output_dir ./output-ner-law \
@@ -10,4 +10,5 @@ python run_tf_ner.py -data_dir ./data \
 -do_predict \
 -init_checkpoint ${PREBERT_PATH}/bert_model.ckpt \
 -bert_config_file ${PREBERT_PATH}/bert_config.json \
--vocab_file ${PREBERT_PATH}/vocab.txt -max_seq_length 512 -batch_size 4
+-vocab_file ${PREBERT_PATH}/vocab.txt -max_seq_length 512 -batch_size 4 \
+-num_train_epochs 1

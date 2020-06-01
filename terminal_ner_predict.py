@@ -27,7 +27,7 @@ from utils.data_utils import InputFeatures
 
 args = get_args_parser()
 
-model_dir = "./output-ner-law"
+model_dir = "./output-model-law"
 bert_dir = "/run/media/zbl/works/python/model-data/bert_hinese_L-12_H-768_A-12/tf1.0"
 
 is_training = False
@@ -39,8 +39,6 @@ gpu_config = tf.ConfigProto()
 gpu_config.gpu_options.allow_growth = True
 sess = tf.Session(config=gpu_config)
 model = None
-
-# input_ids_p, input_mask_p, label_ids_p, segment_ids_p = None, None, None, None
 
 print("checkpoint path:{}".format(os.path.join(model_dir, "checkpoint")))
 if not os.path.exists(os.path.join(model_dir, "checkpoint")):

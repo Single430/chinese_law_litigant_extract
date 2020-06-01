@@ -77,6 +77,7 @@ class NerProcessor(object):
                         labels = []
                 else:
                     splits = line.split(" ")
+                    if len(splits[0].strip()) == 0: continue
                     words.append(splits[0])
                     if len(splits) > 1:
                         labels.append(splits[-1].replace("\n", ""))
@@ -120,7 +121,7 @@ def convert_single_example(
     :return:
     """
     label_map = {}
-    for (i, label) in enumerate(label_list):
+    for (i, label) in enumerate(label_list, 1):
         label_map[label] = i
     # 保存label->index 的map
     if not os.path.exists(os.path.join(output_dir, "label2id.pkl")):
@@ -140,7 +141,7 @@ def convert_single_example(
             if m == 0:
                 labels.append(tmp_label)
             else:  # 一般不会出现else
-                labels.append("X")
+                labels.append("O")
 
     # 序列截断
     if len(tokens) >= max_seq_length - 1:
