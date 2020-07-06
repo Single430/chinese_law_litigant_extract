@@ -30,6 +30,12 @@ PLA, 付凡华
 OTH
 ```
 
+## To Do List
+
+- [x] Train module
+- [ ] dataset public
+
+
 ## Improve
 * [UNK]: Chinese rare words, need after-treatment OR add bert vocab.txt
 
